@@ -1,0 +1,15 @@
+.vscode/**
+.github/**
+src/**
+test/**
+scripts/**
+esbuild.mjs
+tsconfig.json
+**/*.map
+**/*.ts
+examples/**
+references/**
+.gitignore
+
+dist/animFile.mjs
+dist/template.mjs

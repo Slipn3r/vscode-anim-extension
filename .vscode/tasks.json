@@ -1,0 +1,32 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "compile",
+      "label": "npm: compile",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "type": "npm",
+      "script": "watch",
+      "label": "npm: watch",
+      "isBackground": true,
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "type": "npm",
+      "script": "typecheck",
+      "label": "npm: typecheck",
+      "group": "test",
+      "problemMatcher": [
+        "$tsc"
+      ]
+    }
+  ]
+}

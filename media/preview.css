@@ -1,0 +1,219 @@
+:root {
+  --toolbar-height: 34px;
+  --frame-border: 1px solid var(--vscode-panel-border, rgba(128, 128, 128, 0.35));
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  color: var(--vscode-foreground);
+  background: var(--vscode-editor-background);
+  font-family: var(--vscode-font-family);
+  font-size: var(--vscode-font-size, 13px);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 14px;
+  flex: 0 0 auto;
+  padding: 4px 10px;
+  min-height: var(--toolbar-height);
+  border-bottom: var(--frame-border);
+  background: var(--vscode-editor-background);
+  user-select: none;
+}
+
+.toolbar .group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.toolbar label {
+  color: var(--vscode-descriptionForeground);
+  white-space: nowrap;
+}
+
+.toolbar .spacer {
+  flex: 1 1 auto;
+}
+
+.toolbar select {
+  max-width: 220px;
+  height: 22px;
+  padding: 0 4px;
+  color: var(--vscode-dropdown-foreground);
+  background: var(--vscode-dropdown-background);
+  border: 1px solid var(--vscode-dropdown-border, transparent);
+  border-radius: 2px;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.toolbar button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  height: 22px;
+  padding: 0 6px;
+  color: var(--vscode-button-secondaryForeground, var(--vscode-foreground));
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+.toolbar button:hover {
+  background: var(--vscode-toolbar-hoverBackground, rgba(128, 128, 128, 0.2));
+}
+
+.toolbar button:focus-visible {
+  outline: 1px solid var(--vscode-focusBorder);
+  outline-offset: -1px;
+}
+
+.toolbar button[data-active='true'] {
+  background: var(--vscode-button-secondaryBackground, rgba(128, 128, 128, 0.25));
+}
+
+.toolbar button.icon svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.toolbar button[data-state='playing'] .icon-play,
+.toolbar button[data-state='paused'] .icon-pause {
+  display: none;
+}
+
+.readout {
+  gap: 10px;
+  color: var(--vscode-descriptionForeground);
+  font-variant-numeric: tabular-nums;
+}
+
+#counter {
+  color: var(--vscode-foreground);
+}
+
+.warnings {
+  flex: 0 0 auto;
+  padding: 4px 10px;
+  color: var(--vscode-editorWarning-foreground, #cca700);
+  border-bottom: var(--frame-border);
+  font-size: 0.92em;
+  cursor: help;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#viewport {
+  display: flex;
+  flex: 1 1 auto;
+  overflow: auto;
+  padding: 12px;
+}
+
+#stage {
+  margin: auto;
+  line-height: 0;
+  border: var(--frame-border);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+}
+
+#stage[data-background='checkerboard'] {
+  background-color: #2b2b2b;
+  background-image:
+    linear-gradient(45deg, #383838 25%, transparent 25%),
+    linear-gradient(-45deg, #383838 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #383838 75%),
+    linear-gradient(-45deg, transparent 75%, #383838 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+}
+
+#stage[data-background='black'] {
+  background: #000;
+}
+
+#stage[data-background='white'] {
+  background: #fff;
+}
+
+#canvas {
+  display: block;
+  image-rendering: pixelated;
+}
+
+.meta {
+  flex: 0 0 auto;
+  padding: 3px 10px;
+  border-top: var(--frame-border);
+  color: var(--vscode-descriptionForeground);
+  font-size: 0.9em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin: auto;
+  max-width: 640px;
+  padding: 20px;
+}
+
+.error h2 {
+  margin: 0;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.error p {
+  margin: 0;
+  color: var(--vscode-descriptionForeground);
+  font-family: var(--vscode-editor-font-family, monospace);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.error button {
+  padding: 4px 12px;
+  color: var(--vscode-button-foreground);
+  background: var(--vscode-button-background);
+  border: none;
+  border-radius: 2px;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+.error button:hover {
+  background: var(--vscode-button-hoverBackground);
+}

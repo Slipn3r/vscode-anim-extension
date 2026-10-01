@@ -1,0 +1,109 @@
+{
+  "name": "busybar-anim-preview",
+  "displayName": "BUSY Bar Anim Preview",
+  "description": "Preview and play BUSY Bar .anim animation files inside VS Code.",
+  "version": "0.1.0",
+  "publisher": "Slipn3r",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Visualization",
+    "Other"
+  ],
+  "keywords": [
+    "anim",
+    "animation",
+    "busybar",
+    "busy bar",
+    "preview"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onCustomEditor:busybarAnim.preview"
+  ],
+  "contributes": {
+    "customEditors": [
+      {
+        "viewType": "busybarAnim.preview",
+        "displayName": "Animation Preview",
+        "selector": [
+          {
+            "filenamePattern": "*.anim"
+          }
+        ],
+        "priority": "default"
+      }
+    ],
+    "commands": [
+      {
+        "command": "busybarAnim.openPreview",
+        "title": "Open Animation Preview",
+        "category": "BUSY Bar Anim",
+        "icon": "$(play-circle)"
+      },
+      {
+        "command": "busybarAnim.showInfo",
+        "title": "Show Animation Info",
+        "category": "BUSY Bar Anim"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "busybarAnim.openPreview",
+          "when": "resourceExtname == .anim",
+          "group": "navigation@10"
+        },
+        {
+          "command": "busybarAnim.showInfo",
+          "when": "resourceExtname == .anim",
+          "group": "navigation@11"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "busybarAnim.showInfo",
+          "when": "resourceExtname == .anim"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "BUSY Bar Anim Preview",
+      "properties": {
+        "busybarAnim.autoplay": {
+          "type": "boolean",
+          "default": true,
+          "description": "Start playing as soon as an animation is opened. Ignored when the system asks for reduced motion."
+        },
+        "busybarAnim.background": {
+          "type": "string",
+          "enum": [
+            "checkerboard",
+            "black",
+            "white"
+          ],
+          "default": "checkerboard",
+          "description": "Background drawn behind the animation, for frames with transparency."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "node esbuild.mjs --production",
+    "compile": "node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "node esbuild.mjs && node --test",
+    "harness": "node esbuild.mjs && node scripts/make-harness.mjs",
+    "render": "node esbuild.mjs && node scripts/render-png.mjs",
+    "vscode:prepublish": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/vscode": "^1.85.0",
+    "esbuild": "^0.24.2",
+    "typescript": "~5.6.3"
+  }
+}
